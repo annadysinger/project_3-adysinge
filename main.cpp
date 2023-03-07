@@ -3,14 +3,14 @@
  * Yay!
  */
 #include <iostream>
-#include <fstream>
+#include <algorithm>
+#include <random>
 #include "AVLTree.h"
 #include "BinarySearchTree.h"
 #include "SplayTree.h"
 #include <vector>
 #include <string>
 #include "Spotify.h"
-#include "randomNumber.cpp"
 #include <fstream>
 
 int main() {
@@ -51,11 +51,19 @@ int main() {
     // Now instantiate a new BST and insert the numbers 1 through 100 in random order.
     // You may use https://www.random.org to generate a shuffled list of numbers 1 through 100,
     // or you can shuffle a vector of numbers 1 through 100 using C++’s shuffle method.
-    vector<int> vec;
-    for(int i; i <= 100; i++){
-        vec.pushback(i);
+    std::random_device rd;
+    std::vector<int> vec;
+    for(int i = 1; i <= 100; i++){
+        vec.push_back(i);
     }
-    random_shuffle(vec.begin(), vec.end());
+    // Requires std::random_device rd; from above ^^^
+    std::shuffle(vec.begin(), vec.end(), rd);
+
+    // Prove that it's shuffled
+    for (int& n : vec) {
+        std::cout << n << " ";
+    }
+    std::cout << std::endl;
 
     // Now search for each number from 1 through 100,
     // and record the depth of each find operation to a file.
@@ -75,12 +83,6 @@ int main() {
     // Make sure you have at least 1000 objects in your BST.
     // Now search for each of your objects and record its depth in a file.
 
-    std::ofstream outFile;
-    outFile.open("../data/example_output.csv");
-    for (int i = 999; i >= 0; --i) {
-        outFile << i << std::endl;
-    }
-    outFile.close();
 
     BinarySearchTree<int> bst1;
     bst1.add(8);
