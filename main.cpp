@@ -84,9 +84,5 @@ int main() {
     // Now search for each of your objects and record its depth in a file.
 
 
-    BinarySearchTree<int> bst1;
-    bst1.add(8);
-    bst1.timber();
-
     return 0;
 }

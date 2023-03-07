@@ -59,7 +59,7 @@ private:
     // Helper recursive function to find a value in the tree.
     // Instantiate a binary search tree (of integer values) and insert the numbers 1 through 100 in that order,
     // then search for all numbers 1 through 100 and record their depths in a file.
-    bool find(const Comparable& c, BinaryNode* n, int depth) const {
+    bool find(const Comparable& c, BinaryNode* n, int &depth) const {
 
         // Make sure that you record the depth of the last node visited even if the search fails,
         // so that you know how far you had to search before failing to find the target value.

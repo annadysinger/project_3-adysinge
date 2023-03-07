@@ -52,20 +52,21 @@ private:
                                                       copyNode(n->leftChild),
                                                       copyNode(n->rightChild));
     }
-
+    // modify the find() methods so that a search of the tree stores
+    // the depth of the last node visited (as above).
     // Helper recursive function to find a value in the tree.
-    bool find(const Comparable& c, AvlNode* n) const {
+    bool find(const Comparable& c, AvlNode* n, int &depth) const {
         if (n == nullptr) {
             // Reached a dead end. Value not in tree.
             return false;
         }
         if (c < n->value) {
             // Value is less than current node. Go to node's left child.
-            return find(c, n->leftChild);
+            return find(c, n->leftChild, depth++);
         }
         if (n->value < c) {
             // Value is greater than current node. Go to node's right child.
-            return find(c, n->rightChild);
+            return find(c, n->rightChild, depth++);
         }
         // If code reaches here, c == n->value. Node found!
         return true;
@@ -231,9 +232,10 @@ public:
         return (root == nullptr);
     }
 
-    bool find(const Comparable& c) const {
+    bool find(const Comparable& c, int &depth) const {
         // calls private helper function
-        return find(c, root);
+        depth = 0;
+        return find(c, root, depth);
     }
 
     void add(const Comparable& c) {
