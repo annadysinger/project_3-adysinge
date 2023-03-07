@@ -53,23 +53,46 @@ private:
                                                         copyNode(n->rightChild));
     }
 
+// modify the find() methods so that a search of the tree stores the depth of the last node visited.
+    // pass an integer variable by reference into the find methods and modify it inside the methods.
     // Helper recursive function to find a value in the tree.
-    bool find(const Comparable& c, BinaryNode* n) const {
+    // Instantiate a binary search tree (of integer values) and insert the numbers 1 through 100 in that order,
+    // then search for all numbers 1 through 100 and record their depths in a file.
+    bool find(const Comparable& c, BinaryNode* n, int $depth) const {
+
+        // Make sure that you record the depth of the last node visited even if the search fails,
+        // so that you know how far you had to search before failing to find the target value.
         if (n == nullptr) {
             // Reached a dead end. Value not in tree.
             return false;
         }
         if (c < n->value) {
-            // Value is less than current node. Go to node's left child.
-            return find(c, n->leftChild);
+            // Value is less than current node. Go to node's left child. Store depth of last node visited.
+            return find(c, n->leftChild, ++depth);
         }
+
+        // Now instantiate a new BST and insert the numbers 1 through 100 in random order.
+        // You may use https://www.random.org to generate a shuffled list of numbers 1 through 100, or you can shuffle
+        // a vector of numbers 1 through 100 using C++’s shuffle method.
+
+        // Now search for each number from 1 through 100, and record the depth of each find operation to a file.
+        // Now instantiate a BST to hold objects of your custom data type.
+
+        // Read your objects into a vector (as you have done in earlier projects) and then insert them into the BST.
+        // Make sure you have at least 1000 objects in your BST.
+        // Now search for each of your objects and record its depth in a file.
+
         if (n->value < c) {
-            // Value is greater than current node. Go to node's right child.
-            return find(c, n->rightChild);
+            // Value is greater than current node. Go to node's right child. Store depth of last node visited.
+            return find(c, n->rightChild, ++depth);
         }
         // If code reaches here, c == n->value. Node found!
         return true;
     }
+    // Saving your output to three separate files will make your life easier.
+    // Each file should have integer value (or your custom object’s unique ID) and depth separated by a
+    // comma for each row. If you use a .csv extension when naming your output files, spreadsheet software
+    // will automatically recognize these as CSVs and will split the data into columns automatically when reading.
 
     // Helper recursive function to add a value to the tree.
     void add(const Comparable& c, BinaryNode* &n) {
@@ -155,9 +178,10 @@ public:
         return (root == nullptr);
     }
 
-    bool find(const Comparable& c) const {
+    bool find(const Comparable& c, int &depth) const {
         // calls private helper function
-        return find(c, root);
+        depth = 0;
+        return find(c, root, depth);
     }
 
     void add(const Comparable& c) {
