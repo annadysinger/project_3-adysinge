@@ -55,7 +55,7 @@ private:
     // modify the find() methods so that a search of the tree stores
     // the depth of the last node visited (as above).
     // Helper recursive function to find a value in the tree.
-    bool find(const Comparable& c, AvlNode* n, int &depth) const {
+    bool find(const Comparable& c, AvlNode* n, int& depth) const {
         if (n == nullptr) {
             // Reached a dead end. Value not in tree.
             return false;
