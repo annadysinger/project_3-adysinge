@@ -193,6 +193,7 @@ int main() {
         for(int i = 0; i <= vec.size(); i++){
             sptTwo.add(vec[i]);
         }
+
         outFile3 << "Inserted in Random Order\n" << std::endl;
         outFile3 << std::string(40, '-') << std::endl;
         for (int i = 1; i <= 100; i++){
@@ -205,7 +206,7 @@ int main() {
         outFile3 << "depth: " << depth << std::endl;
         depth = 0;
         spt1.find(101, depth);
-        outFile << "depth: " << depth << std::endl;
+        outFile3 << "depth: " << depth << std::endl;
 
         outFile3.close();
     } else {
