@@ -163,12 +163,14 @@ private:
             return false;
         }
         if (c < n->value) {
-            // Value is less than current node. Go to node's left child.
-            return find(c, n->leftChild, depth++);
+            // Value is less than current node. Go to node's left child.]
+            depth++;
+            return find(c, n->leftChild, depth);
         }
         if (n->value < c) {
+            depth++;
             // Value is greater than current node. Go to node's right child.
-            return find(c, n->rightChild, depth++);
+            return find(c, n->rightChild, depth);
         }
         // If code reaches here, c == n->value. Node found!
         splay(n);
@@ -236,9 +238,11 @@ private:
 
 public:
     // Default Constructor
-    SplayTree(bool splayOnAdd) {
+    // Notice that the SplayTree class takes a boolean
+    // argument in its constructor. For this portion of the
+    // assignment set this to false.
+    SplayTree() {
         root = nullptr;
-        this->splayOnAdd = splayOnAdd;
     }
 
     // Copy Constructor
@@ -263,9 +267,8 @@ public:
         return (root == nullptr);
     }
 
-    bool find(const Comparable& c) {
+    bool find(const Comparable& c, int& depth) {
         // calls private helper function
-        int depth = 0;
         return find(c, root, depth);
     }
 

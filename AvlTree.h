@@ -61,12 +61,14 @@ private:
             return false;
         }
         if (c < n->value) {
+            depth++;
             // Value is less than current node. Go to node's left child.
-            return find(c, n->leftChild, depth++);
+            return find(c, n->leftChild, depth);
         }
         if (n->value < c) {
+            depth++;
             // Value is greater than current node. Go to node's right child.
-            return find(c, n->rightChild, depth++);
+            return find(c, n->rightChild, depth);
         }
         // If code reaches here, c == n->value. Node found!
         return true;
