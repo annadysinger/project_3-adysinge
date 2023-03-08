@@ -213,5 +213,51 @@ int main() {
         outFile3 << "Unable to open output file!" << std::endl;
         return 1;
     }
+
+    // Custom data type trees.
+    std::ofstream outFile4;
+    outFile4.open("../data/CustomData.txt");
+    BinarySearchTree<Spotify> bstSongs;
+    AvlTree<Spotify> avlSongs;
+    SplayTree<Spotify> sptSongs;
+    if (outFile4.is_open()) {
+        // Instantiate a binary search tree (of integer values) and insert the
+        // numbers 1 through 100 in that order, then search for all numbers 1 through 100.
+        for (int i = 1; i <= songs.size(); i++) {
+            bstSongs.add(songs[i]);
+            avlSongs.add(songs[i]);
+            sptSongs.add(songs[i]);
+        }
+        outFile4 << "BST order:\n" << std::endl;
+        outFile4 << std::string(40, '-') << std::endl;
+        // Print out BST
+        for (int i = 1; i <= songs.size(); i++) {
+            int depth = 0;
+            bstSongs.find(songs[i], depth);
+            outFile4 << depth << std::endl;
+        }
+        outFile4 << "AVL order:\n" << std::endl;
+        outFile4 << std::string(40, '-') << std::endl;
+
+        // Print out AV
+        for (int i = 1; i <= songs.size(); i++) {
+            int depth = 0;
+            avlSongs.find(songs[i], depth);
+            outFile4 << depth << std::endl;
+        }
+        outFile4 << " Splay order:\n" << std::endl;
+        outFile4 << std::string(40, '-') << std::endl;
+
+        // Print out Splay
+        for (int i = 1; i <= songs.size(); i++) {
+            int depth = 0;
+            sptSongs.find(songs[i], depth);
+            outFile4 << depth << std::endl;
+        }
+        outFile4.close();
+
+    }
+
+
     return 0;
 }
