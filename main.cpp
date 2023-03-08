@@ -255,8 +255,22 @@ int main() {
             outFile4 << depth << std::endl;
         }
         outFile4.close();
-
     }
+
+    // Custom data type trees.
+    std::ofstream outFile5;
+    outFile4.open("../data/CustomSplayData.txt");
+    SplayTree<Spotify> data;
+    for (int i = 1; i <= songs.size(); i++) {
+        data.add(songs[i]);
+        for(int j = 1; j <= 5; j++){
+            int depth = 0;
+            data.find(songs[i],  depth);
+            outFile5 << depth << std::endl;
+        }
+    }
+
+
 
 
     return 0;
