@@ -259,7 +259,7 @@ int main() {
 
     // Custom data type trees.
     std::ofstream outFile5;
-    outFile4.open("../data/CustomSplayData.txt");
+    outFile5.open("../data/CustomSplayData.txt");
     SplayTree<Spotify> data;
     for (int i = 1; i <= songs.size(); i++) {
         data.add(songs[i]);
@@ -269,6 +269,7 @@ int main() {
             outFile5 << depth << std::endl;
         }
     }
+    outFile5.close();
 
 
 
