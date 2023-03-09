@@ -172,7 +172,7 @@ int main() {
         bool result;
         for (int i = 1; i <= 100; i++){
             result = spt1.find(i, depth);
-            outFile << "Searching for " << i << ", result: " << result << ", depth: " << depth << std::endl;
+            outFile3 << "Searching for " << i << ", result: " << result << ", depth: " << depth << std::endl;
         }
         // Print shuffled
         // Now instantiate a new BST and insert the numbers 1 through 100 in random order.

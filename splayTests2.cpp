@@ -16,7 +16,7 @@
  */
 float calcAverageDepth(bool splayOnAdd) {
 
-    SplayTree<int> splayTree(splayOnAdd);
+    SplayTree<int> splayTree(nullptr);
 
     std::ifstream fin;
     fin.open("../splay_trace.csv");
